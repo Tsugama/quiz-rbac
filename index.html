@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz Azure RBAC</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f4f4f4; }
+    h1 { color: #0078D4; }
+    .quiz-container { background: #fff; padding: 20px; border-radius: 8px; max-width: 800px; margin: auto; }
+    .question { margin-bottom: 20px; }
+    button { padding: 10px 20px; background: #0078D4; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    button:hover { background: #005a9e; }
+    .result { margin-top: 20px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <h1>Quiz Azure RBAC</h1>
+    <form id="quizForm">
+      <div class="question">
+        <p>1. O que o painel IAM permite fazer no portal do Azure?</p>
+        <label><input type="radio" name="q1" value="C"> C) Gerenciar quem tem acesso a quais recursos</label><br>
+        <label><input type="radio" name="q1" value="A"> A) Criar novas VMs e bancos de dados</label><br>
+        <label><input type="radio" name="q1" value="B"> B) Monitorar métricas de performance</label><br>
+        <label><input type="radio" name="q1" value="D"> D) Visualizar logs de rede</label>
+      </div>
+
+      <div class="question">
+        <p>2. Qual é a função do campo NotActions?</p>
+        <label><input type="radio" name="q2" value="B"> B) Especificar as ações que o usuário não pode executar</label><br>
+        <label><input type="radio" name="q2" value="A"> A) Conceder acesso adicional</label><br>
+        <label><input type="radio" name="q2" value="C"> C) Definir escopo da função</label><br>
+        <label><input type="radio" name="q2" value="D"> D) Atribuir permissões de leitura</label>
+      </div>
+
+      <div class="question">
+        <p>3. Qual dessas hierarquias está correta?</p>
+        <label><input type="radio" name="q3" value="C"> C) Grupo de Gerenciamento > Assinatura > Grupo de Recursos > Recurso</label><br>
+        <label><input type="radio" name="q3" value="A"> A) Recurso > Grupo de Recursos > Assinatura > Grupo de Gerenciamento</label><br>
+        <label><input type="radio" name="q3" value="B"> B) Grupo de Recursos > Assinatura > Grupo de Gerenciamento > Recurso</label><br>
+        <label><input type="radio" name="q3" value="D"> D) Assinatura > Recurso > Grupo de Recursos > Grupo de Gerenciamento</label>
+      </div>
+
+      <div class="question">
+        <p>4. Um usuário "Colaborador" em um grupo de recursos pode:</p>
+        <label><input type="radio" name="q4" value="B"> B) Gerenciar recursos apenas dentro daquele grupo</label><br>
+        <label><input type="radio" name="q4" value="A"> A) Criar e excluir qualquer recurso no Azure</label><br>
+        <label><input type="radio" name="q4" value="C"> C) Gerenciar assinaturas</label><br>
+        <label><input type="radio" name="q4" value="D"> D) Modificar funções de usuários</label>
+      </div>
+
+      <div class="question">
+        <p>5. O que é necessário para criar uma atribuição de função?</p>
+        <label><input type="radio" name="q5" value="C"> C) Uma entidade de segurança, uma função e um escopo</label><br>
+        <label><input type="radio" name="q5" value="A"> A) Função e assinatura</label><br>
+        <label><input type="radio" name="q5" value="B"> B) Recurso e tenant</label><br>
+        <label><input type="radio" name="q5" value="D"> D) Nome do usuário e assinatura</label>
+      </div>
+
+      <div class="question">
+        <p>6. Se você atribui uma função no nível da assinatura, isso significa:</p>
+        <label><input type="radio" name="q6" value="C"> C) Ela afeta todos os grupos de recursos e recursos na assinatura</label><br>
+        <label><input type="radio" name="q6" value="A"> A) Ela só tem efeito em um recurso</label><br>
+        <label><input type="radio" name="q6" value="B"> B) Só afeta grupos de gerenciamento</label><br>
+        <label><input type="radio" name="q6" value="D"> D) Dá acesso ao tenant todo</label>
+      </div>
+
+      <button type="button" onclick="verificarRespostas()">Verificar Respostas</button>
+      <div class="result" id="resultado"></div>
+    </form>
+  </div>
+
+  <script>
+    const gabarito = { q1: "C", q2: "B", q3: "C", q4: "B", q5: "C", q6: "C" };
+
+    function verificarRespostas() {
+      let acertos = 0;
+      for (let q in gabarito) {
+        const resposta = document.querySelector(`input[name="${q}"]:checked`);
+        if (resposta && resposta.value === gabarito[q]) acertos++;
+      }
+      document.getElementById("resultado").innerText = `Você acertou ${acertos} de 6 questões!`;
+    }
+  </script>
+</body>
+</html>
